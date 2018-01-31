@@ -10,7 +10,6 @@ def squared_nums(num_list):
     num_list: list of numbers
     Returns: list of these numbers squared
     """
-    
     squared_list = []
 
     for num in num_list:
@@ -19,3 +18,15 @@ def squared_nums(num_list):
 
     return(squared_list)
 
+def check_title(title_list):
+    """Removes strins in the title list that have numbers and aren't title case
+    title_list: list of strings
+    Returns: list of strings that are titles
+    """
+    list_title = []
+
+    for x in title_list:
+        if x == x.title():
+            list_title.append(x)
+
+    return(list_title)
