@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .models import education, experience
+from .models import resume, education, experience
 
 # Create your views here.
 
 def home(request):
-    qs = education.objects.order_by('-institution_name')
-    context = { 'educations': qs}
+    myResume = resume.objects.first()
+    context = { 'myResume': myResume}
     return render(request, 'resume/home.html', context)

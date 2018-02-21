@@ -1,27 +1,18 @@
 {% extends 'base.html' %}
 
+{% block title %}Resume{% endblock %}
+
 {% block content %}
-        {% if educations %}
-            <ul>
-                {% for x in educations %}
-                    <li>{{x.institution_name}}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <h1>No educations Found! Contact Admin!</h1>
 
-        {% endif %}
+    <h1>Education</h1>
+    {% for education in my_resume.get_education.all %}
+        {{education}}<br>
+    {% endfor %}
 
-        {% if experiences %}
-            <ul>
-                {% for x in experiences %}
-                    <li>{{x.location}}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <h1>No experiences Found! Contact Admin!</h1>
+    <h1>Experience</h1>
+    {% for experience in my_resume.get_experience.all %}
+        {{experience}}<br>
+    {% endfor %}
 
-        {% endif %}
-
-    </body>
+</body>
 {% endblock %}
