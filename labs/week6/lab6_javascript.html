@@ -35,44 +35,92 @@
 
 	<div id="prob1">
 		<p class='problem'>1. When I click the button below, it should change from "click me!" to "I was clicked!"</p>
-		<button>Click Me!</button>
+		<button id="button1" onclick="button1()">Click Me!</button>
 	</div>
 
 	<div id="prob2">
 		<p class='problem'>2. There are two buttons below. When a button is clicked, the other
-			 bottom should appear and the button that was clicked should disappear.</p>
-		<button>Button A: Show B</button>
-		<button>Button B: Show A</button>
+			 button should appear and the button that was clicked should disappear.</p>
+		<button id="button2A" onclick="button2A()">Button A: Show B</button>
+		<button id="button2B" onclick="button2B()">Button B: Show A</button>
 	</div>
 
-	<div id="prob4">
-		<p class='problem'>3. My favorite color is is pink. When I click the button below. I want
-			this header to change to my favorite color</p>
-		<button>Pink Is My Favorite Color</button>
+	<div id="prob3">
+		<p class='problem' id="p3Graph">3. My favorite color is is pink. When I click the button below. I want
+			this paragraph to change to my favorite color</p>
+		<button onclick="button3()">Pink Is My Favorite Color</button>
 	</div>
 
 	<div id="prob4">
 		<p class='problem'>4. I like to say hi to people. There is an unorded list below and a button. When I click the button,
 			I want another list item to appear greeting a new person.</p>
-		<button>Say Hi!</button>
-		<ul></ul>
+		<button id="button4" onclick="button4()">Say Hi!</button>
+		<ul id="ul4"></ul>
 	</div>
 
 	<div id="prob5">
 		<p class='problem'>5. I like to browse the web. But I'm a nerd, and only use the console.
 			There is a text box and button below. I want to put a url into the text box, click the button, and see the response in the console.</p>
-		<input type="text">
-		<button>Fetch!</button>
+		<input type="text" id="prob5Input">
+		<button id="button5" onclick="button5()">Fetch!</button>
 	</div>
 
 	<div id="prob6">
 		<p class='problem'>6. I like my data like I like my news...fake. Fill the empty ul below with some fake data from https://jsonplaceholder.typicode.com/ when I click the fetch button.</p>
-		<button>Fetch!</button>
-		<ul></ul>
+		<button onclick="button6()">Fetch!</button>
+		<ul id="ul6"></ul>
 	</div>
 
 <script>
 	alert('Have fun! Submit by placing your finished file in workspace/labs/week6 and push to git. Collaborate via slack.');
+    function button1(){
+        document.getElementById("button1").innerHTML = "I was clicked!";
+    }
+    function button2A(){
+        document.getElementById("button2B").style.display = "block";
+        document.getElementById("button2A").style.display = "none";
+    }
+    function button2B(){
+        document.getElementById("button2A").style.display = "block";
+        document.getElementById("button2B").style.display = "none";
+    }
+    function button3(){
+        document.getElementById("p3Graph").style.color = "pink";
+    }
+    function button4(){
+        console.log()
+        var greeting = "Hello New Person!";
+        var ul = document.getElementById("ul4");
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(greeting));
+        ul.appendChild(li);
+    }
+    function button5(){
+        var url = document.getElementById("prob5Input").value;
+        fetch(url).then(function(response){
+            return response.json();
+        }).then(function(response){
+            console.log(response);
+        }).catch(function(error){
+            console.log(error);
+        })
+    }
+    function button6(){
+        var url = "https://jsonplaceholder.typicode.com/posts/1";
+        fetch(url).then(function(response){
+            return response.json();
+        }).then(function(response){
+            var test = JSON.stringify(response).split('\\n').join(' ').split(',').join(', ').split(':').join(' : ');;
+            console.log(response);
+            console.log(test);
+            var ul = document.getElementById("ul6");
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(test));
+            ul.appendChild(li);
+        }).catch(function(error){
+            console.log(error);
+        })
+    }
 </script>
 </body>
 
