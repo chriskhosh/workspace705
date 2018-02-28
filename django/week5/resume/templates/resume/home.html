@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Resume{% endblock %}
+
+{% block content %}
+
+    <h1>Education</h1>
+    {% for education in my_resume.get_education.all %}
+        {{education}}<br>
+    {% endfor %}
+
+    <h1>Experience</h1>
+    {% for experience in my_resume.get_experience.all %}
+        {{experience}}<br>
+    {% endfor %}
+
+</body>
+{% endblock %}
